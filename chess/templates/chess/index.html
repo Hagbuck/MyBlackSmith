@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <meta charset="utf-8" />
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'ico/bs.ico' %}">
+        <title>Chess</title>
+        <!-- Custom style-->
+        <link rel="stylesheet" href="{% static 'css/basics.css' %}">
+        <link rel="stylesheet" href="{% static 'css/header-footer.css' %}">
+        <!-- Chess -->
+        <link rel="stylesheet" href="{% static 'styles/main.css' %}" />
+        <link rel="stylesheet" href="{% static 'chessboardjs-1.0.0/css/chessboard-1.0.0.css' %}" />
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="{% static 'chessboardjs-1.0.0/js/chessboard-1.0.0.js' %}"></script>
+    </head>
+    <body>
+
+        {% include 'parts/header.html' %}
+        <div style="text-align: center;">
+            <div id="board" style="width: 600px; margin: auto;"></div>
+            <button id="startBtn">Start Position</button>
+            <button id="clearBtn">Clear Board</button>
+        </div>
+        
+        <script type="text/javascript">
+            $(function(){
+                console.log("{% static 'chessboardjs-1.0.0/img/chesspieces/wikipedia/{piece}.png' %}");
+                var board = Chessboard('board', {
+                    draggable: true,
+                    dropOffBoard: 'trash',
+                    sparePieces: true
+                })
+
+                $('#startBtn').on('click', board.start)
+                $('#clearBtn').on('click', board.clear)
+            });
+        </script>
+    </body>
+</html>

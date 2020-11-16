@@ -1,0 +1,74 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+body{
+    background-color: #2b2b2b;
+}
+
+.container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item *{
+    justify-content: center;
+}
+
+p{
+    color: white;
+}
+
+/*** Grey boxes (apps, projects) ***/
+.grey-box-container{
+    display: flex;  
+    justify-content: center;
+    align-items:center;
+    flex-wrap: wrap;
+    flex-direction:row;
+}
+
+.grey-box{
+    width: 200px;
+    height: 200px;
+    background-color: #888888;
+    margin: 20px;
+    display: inline-block;
+    transition: 100ms linear;
+}
+
+.grey-box:hover{
+    transform: scale(1.1);
+}
+
+.grey-box h2{
+    text-align: center;
+    color: black;
+}
+
+.grey-box-logo{
+    width: 100px;
+    margin: auto;
+    display: block;
+}
+
+
+/*** Classic boxes ***/
+.box{
+    background-color: #888888;
+    margin: auto;
+    margin: 100px;
+}
+
+.box h2{
+    text-align: center;
+}
+
+label{
+    display: inline-block;
+    width: 200px;
+}

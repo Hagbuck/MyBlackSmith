@@ -1,0 +1,18 @@
+{% extends 'parts/base.html' %}
+{% load static %}
+{% block page %}
+<div id="app-list" class="grey-box-container" style="height: 80%;">
+    <a href="/projects"><div class="grey-box">
+        <h2>My Projects</h2>
+        <img src="{% static 'img/bs.png' %}" class="grey-box-logo"/>
+    </div></a>
+    <a href=""><div class="grey-box">
+        <h2>My Calendar</h2>
+        <img src="{% static 'img/calendar.png' %}" class="grey-box-logo"/>
+    </div></a>
+    <a href="/chess"><div class="grey-box">
+        <h2>Chess Game</h2>
+        <img src="{% static 'chessboardjs-1.0.0/img/chesspieces/wikipedia/bN.png' %}" class="grey-box-logo"/>
+    </div></a>
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'parts/base.html' %}
+{% load static %}
+{% block page %}
+<div class="box">
+    <h2>Details</h2>
+    <form>
+        {% csrf_token %}
+        <label>Username</label><input type="text" value="{{ user.username }}"><br />
+        <label>Email</label><input type="text" value="{{ user.email }}"><br />
+        <label>Firstname</label><input type="text" value="{{ user.first_name }}"><br />
+        <label>Lastname</label><input type="text" value="{{ user.last_name }}"><br />
+    </form>
+</div>
+{% endblock %}

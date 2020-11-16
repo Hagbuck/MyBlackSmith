@@ -1,0 +1,79 @@
+@font-face{
+    font-family: 'copasetic';
+    src: url('../fonts/COPASETI.TTF') format('truetype');
+}
+
+header, footer{
+    background-color: #222222;
+    color: white;
+    padding: 8px;
+    font-family: Helvetica;
+}
+
+footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+footer div{
+    margin: auto;
+}
+
+.logo, .login-box{
+    width: 256px;
+    min-width: 64px;
+    display: block;
+    /* background-color: red; */
+}
+
+.logo{
+    width: 512px;
+}
+
+.logo *{
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+}
+
+.login-box{
+    text-align: right;
+}
+
+.header_button{
+    width: 64px;
+    height: 32px;
+    /* border-radius: 10%; */
+    border: 0px;
+    background-color: white;
+    padding: 2px;
+    margin-right: 10px;
+}
+
+#login_button, #user_button{
+    background-color: unset;
+    color: white;
+    border: 2px solid white;
+}
+
+.mainlogo{
+    width: 48px;
+    -webkit-filter: invert(100%);
+    filter: invert(100%);
+}
+
+/* Manage transform around main title link (redirection to main page) */
+.maintitle *{
+    color: white;
+}
+
+.maintitle *:hover{
+    color: #CCCCCC;
+}
+
+.maintitle:visited{
+    color: white;
+}
