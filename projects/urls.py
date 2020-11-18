@@ -10,4 +10,5 @@ urlpatterns = [
     path('<int:pk>/', views.ProjectDetail.as_view(), name="project"),
     path('<int:pk>/tasks/create', views.CreateTask.as_view(), name="create_task"),
     path('<int:project_id>/tasks/<int:pk>', views.TaskDetail.as_view(), name="task"),
+    path('<int:project_id>/tasks/<int:pk>/update', views.UpdateTask.as_view(), name="update_task"),
 ]

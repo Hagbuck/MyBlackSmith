@@ -10,10 +10,11 @@ class SignupView(generic.CreateView):
     success_url = reverse_lazy('login')
     template_name = 'accounts/signup.html'
 
-class AccountView(LoginRequiredMixin, generic.DetailView):
+class AccountView(LoginRequiredMixin, generic.UpdateView):
     model = User
-    fields = ['username', 'firstname', 'lastname', 'email']
+    fields = ['username', 'first_name', 'last_name', 'email']  
     template_name = "accounts/index.html"
+    success_url = reverse_lazy('accounts:account')
 
     def get_object(self):
         return self.request.user

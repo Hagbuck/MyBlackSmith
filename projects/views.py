@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 
 from .models import Project, Task
 
@@ -48,3 +48,9 @@ class TaskDetail(LoginRequiredMixin, generic.DetailView):
 
     def get_queryset(self):
         return super().get_queryset().filter(user = self.request.user.id)
+
+class UpdateTask(LoginRequiredMixin, generic.UpdateView):
+    template_name = 'projects/update_task.html'
+    model = Task
+    fields = '__all__'
+    success_url = reverse_lazy('projects:task')
