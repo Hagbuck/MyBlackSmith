@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 
 class Project(models.Model):
     name = models.CharField(max_length = 256)
-    user = models.ForeignKey(get_user_model(), on_delete = models.CASCADE, editable=False)
+    user = models.ForeignKey(get_user_model(), on_delete = models.CASCADE)
     description = models.CharField(max_length = 2048)
     creation_date = models.DateTimeField(default=timezone.now, editable=False)
 
@@ -13,12 +13,17 @@ class Project(models.Model):
 
 class Task(models.Model):
     project = models.ForeignKey(Project, on_delete = models.CASCADE)
+    user = models.ForeignKey(get_user_model(), on_delete = models.CASCADE)
     name = models.CharField(max_length = 256)
     text = models.TextField()
     creation_date = models.DateTimeField(default=timezone.now, editable=False)
 
+    def __str__(self):
+        return '[' + self.project.name + '] ' + self.name
+
 class Comment(models.Model):
     task = models.ForeignKey(Task, on_delete = models.CASCADE)
+    user = models.ForeignKey(get_user_model(), on_delete = models.CASCADE)
     text = models.TextField()
     creation_date = models.DateTimeField(default=timezone.now, editable=False)
 

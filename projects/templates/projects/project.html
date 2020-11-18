@@ -1,6 +1,24 @@
 {% extends 'parts/base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'projects/css/projects.css' %}" />
+{% endblock %}
+
 {% block page %}
-	<div class=grey-box>
-		<h2>{{ project.name }}</h2>
-	</div>
+<div class=box>
+    <h2 class="project-title">{{ project.name }}</h2>
+    <p class="project-description">{{ project.description }}</p>
+</div>
+
+<a href="/projects/{{ project.id }}/tasks/create"><div class="grey-box">
+    <h2>Create New Task</h2>
+    <img src="{% static 'img/plus.png' %}" class="grey-box-logo"/>
+</div></a>
+{% for task in project.task_set.all %}
+<a href="/projects/{{ project.id }}/tasks/{{ task.id }}"><div class="grey-box">
+    <h2>{{ task.name }}</h2>
+    <img src="{% static 'img/bs.png' %}" class="grey-box-logo"/>
+</div></a>
+{% endfor %}
 {% endblock %}
