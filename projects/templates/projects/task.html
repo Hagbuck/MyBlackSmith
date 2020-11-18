@@ -1,0 +1,13 @@
+{% extends 'parts/base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'projects/css/projects.css' %}" />
+{% endblock %}
+
+{% block page %}
+<div class=box>
+    <h2 class="project-title">{{ task.name }}</h2>
+    <p class="project-description">{{ task.text }}</p>
+</div>
+{% endblock %}

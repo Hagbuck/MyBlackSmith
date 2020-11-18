@@ -41,3 +41,10 @@ class CreateTask(LoginRequiredMixin, generic.CreateView):
         self.object.user = self.request.user
         self.object.save()
         return HttpResponseRedirect(reverse('projects:project', kwargs={'pk': self.kwargs['pk']}))
+
+class TaskDetail(LoginRequiredMixin, generic.DetailView):
+    template_name = 'projects/task.html'
+    model = Task
+
+    def get_queryset(self):
+        return super().get_queryset().filter(user = self.request.user.id)

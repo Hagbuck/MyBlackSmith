@@ -11,6 +11,7 @@
     <p class="project-description">{{ project.description }}</p>
 </div>
 
+<div class="grey-box-container">
 <a href="/projects/{{ project.id }}/tasks/create"><div class="grey-box">
     <h2>Create New Task</h2>
     <img src="{% static 'img/plus.png' %}" class="grey-box-logo"/>
@@ -18,7 +19,8 @@
 {% for task in project.task_set.all %}
 <a href="/projects/{{ project.id }}/tasks/{{ task.id }}"><div class="grey-box">
     <h2>{{ task.name }}</h2>
-    <img src="{% static 'img/bs.png' %}" class="grey-box-logo"/>
+    <p>{{ task.text }}</p>
 </div></a>
 {% endfor %}
+</div>
 {% endblock %}
