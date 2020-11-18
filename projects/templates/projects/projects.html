@@ -8,7 +8,7 @@
     </div></a>
 
     {% for project in project_list %}
-        <a href=""><div class="grey-box">
+    <a href="/projects/{{ project.id }}"><div class="grey-box">
             <h2>{{ project.name }}</h2>
             <img src="{% static 'img/bs.png' %}" class="grey-box-logo"/>
         </div></a>

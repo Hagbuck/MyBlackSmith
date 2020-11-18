@@ -24,3 +24,12 @@ class CreateProject(LoginRequiredMixin, generic.CreateView):
         self.object.user = self.request.user
         self.object.save()
         return HttpResponseRedirect(reverse('projects:projects'))
+
+class ProjectDetail(LoginRequiredMixin, generic.DetailView):
+    template_name = 'projects/project.html'
+    model = Project
+
+    def get_queryset(self):
+        return super().get_queryset().filter(user = self.request.user.id)
+    
+
