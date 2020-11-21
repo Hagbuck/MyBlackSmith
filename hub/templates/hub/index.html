@@ -2,6 +2,12 @@
 {% load static %}
 {% block page %}
 <div id="app-list" class="grey-box-container" style="height: 80%;">
+    {% if user.is_superuser %}
+    <a href="/admin"><div class="grey-box">
+        <h2>Admin</h2>
+        <img src="{% static 'img/setting.png' %}" class="grey-box-logo"/>
+    </div></a>
+    {% endif %}
     <a href="/projects"><div class="grey-box">
         <h2>My Projects</h2>
         <img src="{% static 'img/bs.png' %}" class="grey-box-logo"/>
