@@ -4,7 +4,7 @@ from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
 
-from .models import Project, Task
+from .models import Project
 
 class ProjectsView(LoginRequiredMixin, generic.ListView):
     template_name = 'projects/projects.html'
@@ -30,27 +30,3 @@ class ProjectDetail(LoginRequiredMixin, generic.DetailView):
 
     def get_queryset(self):
         return super().get_queryset().filter(user = self.request.user.id)
-
-class CreateTask(LoginRequiredMixin, generic.CreateView):
-    template_name = 'projects/create_task.html'
-    model = Task
-    fields = ['name', 'text', 'project']
-
-    def form_valid(self, form):
-        self.object = form.save(commit=False)
-        self.object.user = self.request.user
-        self.object.save()
-        return HttpResponseRedirect(reverse('projects:project', kwargs={'pk': self.kwargs['pk']}))
-
-class TaskDetail(LoginRequiredMixin, generic.DetailView):
-    template_name = 'projects/task.html'
-    model = Task
-
-    def get_queryset(self):
-        return super().get_queryset().filter(user = self.request.user.id)
-
-class UpdateTask(LoginRequiredMixin, generic.UpdateView):
-    template_name = 'projects/update_task.html'
-    model = Task
-    fields = '__all__'
-    success_url = reverse_lazy('projects:task')

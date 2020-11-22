@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'polls.apps.PollsConfig',
     'chess.apps.ChessConfig',
     'projects.apps.ProjectsConfig',
+    'tasks.apps.TasksConfig',
     'hub.apps.HubConfig',
     'accounts.apps.AccountsConfig',
 ]
