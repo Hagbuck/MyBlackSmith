@@ -12,7 +12,7 @@ class Task(models.Model):
     creation_date = models.DateTimeField(default=timezone.now, editable=False)
 
     def __str__(self):
-        return '[' + self.project.name + '] ' + self.name
+        return self.name
 
 class Comment(models.Model):
     task = models.ForeignKey(Task, on_delete = models.CASCADE)

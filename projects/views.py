@@ -44,3 +44,10 @@ class UpdateProject(LoginRequiredMixin, generic.UpdateView):
         self.object.user = self.request.user
         self.object.save()
         return HttpResponseRedirect(reverse('projects:project', kwargs={'pk': self.kwargs['pk']}))
+
+class DeleteProject(LoginRequiredMixin, generic.DeleteView):
+    model = Project
+    success_url = reverse_lazy('projects:projects')
+
+    def get_queryset(self):
+        return Project.objects.all().filter(user = self.request.user.id)

@@ -45,3 +45,10 @@ class UpdateTask(LoginRequiredMixin, generic.UpdateView):
         self.object.user = self.request.user
         self.object.save()
         return HttpResponseRedirect(reverse('tasks:task', kwargs={'pk': self.kwargs['pk']}))
+
+class DeleteTask(LoginRequiredMixin, generic.DeleteView):
+    model = Task
+    success_url = reverse_lazy('tasks:tasks')
+
+    def get_queryset(self):
+        return Task.objects.all().filter(user = self.request.user.id)
