@@ -38,11 +38,6 @@ p{
     background-color: #888888;
     margin: 20px;
     display: inline-block;
-    transition: 100ms linear;
-}
-
-.grey-box:hover{
-    transform: scale(1.1);
 }
 
 .grey-box h2{
@@ -73,8 +68,30 @@ label{
     width: 200px;
 }
 
+.grow-anim{
+    transition: 100ms linear;
+}
+
+.grow-anim:hover{
+    transform: scale(1.1);
+}
+
 /*** Button ***/
 .button{
     width: 64px;
     margin: 0 8px 0 8px;
+}
+
+/*** Project ***/
+.project-title{
+    color: black;
+}
+
+.project-description{
+    color: black;
+    text-align: center;
+}
+
+svg.button, svg.button:hover, svg.button:visited{
+    color: black;
 }

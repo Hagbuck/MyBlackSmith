@@ -2,13 +2,13 @@
 {% load static %}
 {% block page %}
 <div id="project-list" class="grey-box-container">
-    <a href="/projects/create"><div class="grey-box">
+    <a href="/projects/create"><div class="grey-box grow-anim">
         <h2>Create New Project</h2>
         <img src="{% static 'img/plus.png' %}" class="grey-box-logo"/>
     </div></a>
 
     {% for project in project_list %}
-    <a href="/projects/{{ project.id }}"><div class="grey-box">
+    <a href="/projects/{{ project.id }}"><div class="grey-box grow-anim">
             <h2>{{ project.name }}</h2>
             <img src="{% static 'img/bs.png' %}" class="grey-box-logo"/>
         </div></a>
