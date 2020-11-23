@@ -6,9 +6,17 @@
 {% endblock %}
 
 {% block page %}
-<div class=box>
-    <h2 class="project-title">{{ project.name }}</h2>
-    <p class="project-description">{{ project.description }}</p>
+<div class="box container">
+    <div class="item">
+        <a href="/projects/{{ project.id }}"><img class="button" src="{% static 'img/bs.png' %}"/></a>
+    </div>
+    <div class="item">
+        <h2 class="project-title">{{ project.name }}</h2>
+        <p class="project-description">{{ project.description }}</p>
+    </div>
+    <div class="item">
+        <a href="/projects/{{ project.id }}/update"><img class="button" src="{% static 'img/setting.png' %}"/></a>
+    </div>
 </div>
 
 <div class="grey-box-container">
@@ -17,7 +25,7 @@
     <img src="{% static 'img/plus.png' %}" class="grey-box-logo"/>
 </div></a>
 {% for task in project.task_set.all %}
-<a href="/projects/{{ project.id }}/tasks/{{ task.id }}"><div class="grey-box">
+<a href="/tasks/{{ task.id }}"><div class="grey-box">
     <h2>{{ task.name }}</h2>
     <p>{{ task.text }}</p>
 </div></a>

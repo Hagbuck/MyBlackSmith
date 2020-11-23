@@ -7,7 +7,16 @@
 
 {% block page %}
 <div class=box>
-    <h2 class="project-title">{{ task.name }}</h2>
-    <p class="project-description">{{ task.text }}</p>
+<div class="box container">
+    <div class="item">
+        <a href="/tasks/{{ task.id }}"><img class="button" src="{% static 'img/bs.png' %}"/></a>
+    </div>
+    <div class="item">
+        <h2 class="project-title">{{ task.name }}</h2>
+        <p class="project-description">{{ task.text }}</p>
+    </div>
+    <div class="item">
+        <a href="/tasks/{{ task.id }}/update"><img class="button" src="{% static 'img/setting.png' %}"/></a>
+    </div>
 </div>
 {% endblock %}

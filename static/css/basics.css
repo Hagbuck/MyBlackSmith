@@ -72,3 +72,9 @@ label{
     display: inline-block;
     width: 200px;
 }
+
+/*** Button ***/
+.button{
+    width: 64px;
+    margin: 0 8px 0 8px;
+}

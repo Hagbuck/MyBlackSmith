@@ -33,7 +33,15 @@ class TaskDetail(LoginRequiredMixin, generic.DetailView):
         return super().get_queryset().filter(user = self.request.user.id)
 
 class UpdateTask(LoginRequiredMixin, generic.UpdateView):
-    template_name = 'projects/update_task.html'
+    template_name = 'tasks/update_task.html'
     model = Task
-    fields = '__all__'
-    success_url = reverse_lazy('tasks:task')
+    fields = ['name', 'text', 'project']
+
+    def get_queryset(self):
+        return Task.objects.all().filter(user = self.request.user.id)
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
+        return HttpResponseRedirect(reverse('tasks:task', kwargs={'pk': self.kwargs['pk']}))

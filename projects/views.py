@@ -30,3 +30,17 @@ class ProjectDetail(LoginRequiredMixin, generic.DetailView):
 
     def get_queryset(self):
         return super().get_queryset().filter(user = self.request.user.id)
+
+class UpdateProject(LoginRequiredMixin, generic.UpdateView):
+    template_name = "projects/update.html"
+    model = Project
+    fields = ['name', 'description']
+
+    def get_queryset(self):
+        return Project.objects.all().filter(user = self.request.user.id)
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
+        return HttpResponseRedirect(reverse('projects:project', kwargs={'pk': self.kwargs['pk']}))
