@@ -1,10 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
 
-from .models import Task
+from .models import Task, Comment
 
 class TasksList(LoginRequiredMixin, generic.ListView):
     template_name = "tasks/tasks.html"
@@ -52,3 +52,14 @@ class DeleteTask(LoginRequiredMixin, generic.DeleteView):
 
     def get_queryset(self):
         return Task.objects.all().filter(user = self.request.user.id)
+
+
+def comment(request, task_id):
+    if request.user.is_authenticated:
+        task = get_object_or_404(Task, pk = task_id, user = request.user)
+        text = request.POST['text']
+        com = Comment(task = task, user = request.user, text = text)
+        com.save()
+        return HttpResponseRedirect(reverse('tasks:task', args=(task.id,)))
+    else:
+        return HttpResponse('Unauthorized', status=401)
