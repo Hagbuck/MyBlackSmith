@@ -56,12 +56,32 @@ p{
 .box{
     background-color: #888888;
     margin: auto;
-    margin: 0 100px 0 100px;
+    margin: 10px 100px 10px 100px;
 }
 
 .box h2{
     text-align: center;
 }
+
+.sub-box{
+    background-color: #2b2b2b;
+    width: 96%;
+    margin: 2%;
+    display: inline-block;
+}
+
+form.sub-box{
+    background-color: #888888;
+}
+
+.long-input{
+    width: 80%;
+}
+
+.long-input-button{
+    width: 16%;
+}
+
 
 label{
     display: inline-block;

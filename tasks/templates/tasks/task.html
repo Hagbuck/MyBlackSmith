@@ -22,14 +22,13 @@
 <div class="box">
     
     {% for comment in task.comment_set.all %}
-        <div class="comment"><p>{{ comment.text }}</p></div>
+        <div class="sub-box"><p>{{ comment.text }}</p></div>
     {% endfor%}
     
-    <form method="POST" action="/tasks/{{ task.id }}/comment">
+    <form class="sub-box container" method="POST" action="/tasks/{{ task.id }}/comment">
         {% csrf_token %}
-        <label for="text"></label>
-        <input type="text" id="text" name="text"/>
-        <button type="submit">Comment</button>
+        <input type="text" id="text" name="text" class="item long-input"/>
+        <button type="submit" class="item long-input-button">Comment</button>
     </form>
 </div>
 {% endblock %}
