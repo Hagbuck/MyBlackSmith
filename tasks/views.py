@@ -45,9 +45,9 @@ class UpdateTask(LoginRequiredMixin, generic.UpdateView):
         return Task.objects.all().filter(user = self.request.user.id)
 
     def form_valid(self, form):
-        self.object = form.save(commit=False)
-        self.object.user = self.request.user
-        self.object.save()
+        task = form.save(commit=False)
+        task.user = self.request.user
+        task.save()
         return HttpResponseRedirect(reverse('tasks:task', kwargs={'pk': self.kwargs['pk']}))
 
 class DeleteTask(LoginRequiredMixin, generic.DeleteView):

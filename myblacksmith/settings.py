@@ -43,11 +43,13 @@ INSTALLED_APPS = [
     'chess.apps.ChessConfig',
     'projects.apps.ProjectsConfig',
     'tasks.apps.TasksConfig',
+    'labels.apps.LabelsConfig',
     'hub.apps.HubConfig',
     'accounts.apps.AccountsConfig',
 
     # Modules
     'rest_framework',
+    'colorfield',
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,16 @@
+{% extends 'parts/base.html' %}
+{% load static %}
+{% block page %}
+<div id="project-list" class="grey-box-container">
+    <a href="/labels/create"><div class="grey-box grow-anim">
+        <h2>Create New Label</h2>
+        <img src="{% static 'img/plus.png' %}" class="grey-box-logo"/>
+    </div></a>
+
+    {% for label in label_list %}
+    <a href="/labels/{{ label.id }}"><div class="grey-box grow-anim" style="background-color: {{ label.color }}">
+            <h2>{{ label.name }}</h2>
+        </div></a>
+    {% endfor %}
+</div>
+{% endblock %}

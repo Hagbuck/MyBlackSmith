@@ -22,7 +22,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.text[:30]
-
-class Label(models.Model):
-    name = models.CharField(max_length = 64)
-    creation_date = models.DateTimeField(default=timezone.now, editable=False)

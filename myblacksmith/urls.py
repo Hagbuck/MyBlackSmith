@@ -42,6 +42,7 @@ urlpatterns = [
     path('chess/', include('chess.urls')),
     path('projects/', include('projects.urls')),
     path('tasks/', include('tasks.urls')),
+    path('labels/', include('labels.urls')),
     path('admin/', admin.site.urls),
 
     path('api-auth/', include('rest_framework.urls')),
