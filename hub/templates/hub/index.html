@@ -1,7 +1,7 @@
 {% extends 'parts/base.html' %}
 {% load static %}
 {% block page %}
-<div id="app-list" class="grey-box-container" style="height: 80%;">
+<div id="app-list" class="grey-box-container">
     {% if user.is_superuser %}
     <a href="/admin"><div class="grey-box grow-anim">
         <h2>Admin</h2>
