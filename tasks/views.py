@@ -19,11 +19,15 @@ class CreateTask(LoginRequiredMixin, generic.CreateView):
     fields = ['name', 'text', 'project']
 
     def form_valid(self, form):
-        self.object = form.save(commit=False)
-        self.object.user = self.request.user
-        self.object.save()
-        return HttpResponseRedirect(reverse('tasks:tasks'))
-        #return HttpResponseRedirect(reverse('projects:project', kwargs={'pk': self.kwargs['pk']}))
+        task = form.save(commit=False)
+        task.user = self.request.user
+        task.save()
+
+        print( task.project )
+        if task.project != None:
+            return HttpResponseRedirect(reverse('projects:project', kwargs = { 'pk' : task.project.id }))
+        else:
+            return HttpResponseRedirect(reverse('tasks:tasks'))
 
 class TaskDetail(LoginRequiredMixin, generic.DetailView):
     template_name = 'tasks/task.html'
