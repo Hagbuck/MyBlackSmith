@@ -44,6 +44,7 @@ p{
     background-color: #888888;
     margin: 20px;
     display: inline-block;
+    overflow: auto;
 }
 
 .grey-box h2{
