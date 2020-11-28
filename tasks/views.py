@@ -5,6 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
 
 from .models import Task, Comment
+from .form import UpdateTaskForm
 
 class TasksList(LoginRequiredMixin, generic.ListView):
     template_name = "tasks/tasks.html"
@@ -39,7 +40,15 @@ class TaskDetail(LoginRequiredMixin, generic.DetailView):
 class UpdateTask(LoginRequiredMixin, generic.UpdateView):
     template_name = 'tasks/update_task.html'
     model = Task
-    fields = ['name', 'text', 'project']
+    form_class = UpdateTaskForm
+
+    def get_form_kwargs(self):
+        """
+        Pass the request to the form class. Necessary to filter label that belong to the current user
+        """
+        kwargs = super(UpdateTask, self).get_form_kwargs()
+        kwargs['request'] = self.request
+        return kwargs
 
     def get_queryset(self):
         return Task.objects.all().filter(user = self.request.user.id)
@@ -62,6 +71,10 @@ def comment(request, task_id):
     if request.user.is_authenticated:
         task = get_object_or_404(Task, pk = task_id, user = request.user)
         text = request.POST['text']
+        
+        if not text:
+            return HttpResponse("Text can't be empty", status=400)
+
         com = Comment(task = task, user = request.user, text = text)
         com.save()
         return HttpResponseRedirect(reverse('tasks:task', args=(task.id,)))
