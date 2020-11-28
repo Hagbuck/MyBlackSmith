@@ -9,6 +9,9 @@
     <div class="item">
         <h2 class="project-title">{{ task.name }}</h2>
         <p class="project-description">{{ task.text }}</p>
+        {% for label in task.labels.all %}
+            <div style="background-color: {{ label.color }}">{{ label.name }}</div>
+        {% endfor %}
     </div>
     <div class="item">
     <a href="/tasks/{{ task.id }}/delete"><svg class="button grow-anim" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
