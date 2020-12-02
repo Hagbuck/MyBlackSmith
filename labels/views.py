@@ -4,6 +4,9 @@ from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
 
+from rest_framework import viewsets
+from .serializers import LabelSerializer
+
 from .models import Label
 
 class LabelsList(LoginRequiredMixin, generic.ListView):
@@ -52,3 +55,18 @@ class DeleteLabel(LoginRequiredMixin, generic.DeleteView):
 
     def get_queryset(self):
         return Label.objects.all().filter(user = self.request.user.id)
+
+
+
+#######################
+#         API         #
+#######################
+
+class LabelViewSet(viewsets.ModelViewSet):
+    queryset = Label.objects.all()
+    serializer_class = LabelSerializer
+
+    def get_queryset(self, *args, **kwargs):
+        if self.request.user.is_superuser:
+            return Label.objects.all()
+        return Label.objects.all().filter(id = self.request.user.id)

@@ -15,6 +15,24 @@ body{
     flex: 1 0 auto;
 }
 
+.right, .center, .left
+{
+    vertical-align: top;
+    display: block;
+}
+
+.right{
+
+}
+
+.center{
+    width: 85%;
+}
+
+.left{
+    width: 15%;
+}
+
 .container{
     display: flex;
     justify-content: space-between;
@@ -22,7 +40,7 @@ body{
 }
 
 .item *{
-    justify-content: center;
+/*    justify-content: center;*/
 }
 
 p{

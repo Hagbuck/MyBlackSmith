@@ -4,6 +4,12 @@ from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
 
+from rest_framework import viewsets
+from rest_framework import status
+from rest_framework import permissions
+from rest_framework.decorators import action
+from .serializers import TaskSerializer
+
 from .models import Task, Comment
 from .form import UpdateTaskForm
 
@@ -80,3 +86,32 @@ def comment(request, task_id):
         return HttpResponseRedirect(reverse('tasks:task', args=(task.id,)))
     else:
         return HttpResponse('Unauthorized', status=401)
+
+
+#######################
+#         API         #
+#######################
+
+# ViewSets define the view behavior.
+class TaskViewSet(viewsets.ModelViewSet):
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
+
+    def get_queryset(self, *args, **kwargs):
+        return Task.objects.all().filter(user = self.request.user)
+
+
+    # @action(detail = True, methods = ['POST'])
+    # def comment(self, request, pk = None):
+    #     task = get_object_or_404(Task, pk = pk, user = request.user.id)
+
+    #     serializer = TaskSerializer(data = request.data)
+
+    #     text = serializer.date['text']
+
+    #     if serializer.is_valid() and text:
+    #         com = Comment(task = taks, user = request.user, text = text)
+    #         com.save()
+    #         return Response(serializer.data)
+
+    #     return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)

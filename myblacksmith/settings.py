@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # My own apps
-    'polls.apps.PollsConfig',
     'chess.apps.ChessConfig',
     'projects.apps.ProjectsConfig',
     'tasks.apps.TasksConfig',
@@ -66,7 +65,7 @@ REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAdminUser',
+        'rest_framework.permissions.IsAuthenticated',
     ]
 }
 

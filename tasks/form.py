@@ -16,5 +16,6 @@ class UpdateTaskForm(forms.ModelForm):
 
     labels = forms.ModelMultipleChoiceField(
             queryset = None,
+            required = False,
             widget = forms.CheckboxSelectMultiple,
         )

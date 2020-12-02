@@ -17,7 +17,7 @@ class Task(models.Model):
         return self.name if not self.project else "{}@{}".format(self.name, self.project)
 
 class Comment(models.Model):
-    task = models.ForeignKey(Task, on_delete = models.CASCADE, editable=False)
+    task = models.ForeignKey(Task, related_name = 'comments', on_delete = models.CASCADE, editable=False)
     user = models.ForeignKey(get_user_model(), on_delete = models.CASCADE, editable=False)
     text = models.TextField()
     creation_date = models.DateTimeField(default=timezone.now, editable=False)

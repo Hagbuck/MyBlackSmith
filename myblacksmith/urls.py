@@ -16,29 +16,25 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from django.contrib.auth.models import User
-from rest_framework import routers, serializers, viewsets
+from rest_framework import routers
 
-# Serializers define the API representation.
-class UserSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = User
-        fields = ['url', 'username', 'email', 'is_staff']
+from accounts.views import UserViewSet
+from tasks.views import TaskViewSet
+from projects.views import ProjectViewSet
+from labels.views import LabelViewSet
 
-# ViewSets define the view behavior.
-class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
-router.register(r'users', UserViewSet)
-
+router.register(r'users', UserViewSet, basename = 'users')
+router.register(r'tasks', TaskViewSet, basename = 'tasks')
+router.register(r'projects', ProjectViewSet, basename = 'projects')
+router.register(r'labels', LabelViewSet, basename = 'labels')
 
 urlpatterns = [
     path('', include('hub.urls')),
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('polls/', include('polls.urls')),
     path('chess/', include('chess.urls')),
     path('projects/', include('projects.urls')),
     path('tasks/', include('tasks.urls')),

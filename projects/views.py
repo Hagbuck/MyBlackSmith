@@ -4,6 +4,10 @@ from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
 
+from rest_framework import viewsets
+from rest_framework import permissions
+from .serializers import ProjectSerializer
+
 from .models import Project
 
 class ProjectsView(LoginRequiredMixin, generic.ListView):
@@ -51,3 +55,18 @@ class DeleteProject(LoginRequiredMixin, generic.DeleteView):
 
     def get_queryset(self):
         return Project.objects.all().filter(user = self.request.user.id)
+
+
+
+#######################
+#         API         #
+#######################
+
+class ProjectViewSet(viewsets.ModelViewSet):
+    queryset = Project.objects.all()
+    serializer_class = ProjectSerializer
+
+    def get_queryset(self, *args, **kwargs):
+        if self.request.user.is_superuser:
+            return Project.objects.all()
+        return Project.objects.all().filter(id = self.request.user.id)
